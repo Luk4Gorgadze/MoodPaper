@@ -11,7 +11,7 @@ COPY package.json ./
 RUN if [ ! -f package.json ]; then echo "package.json not found!"; exit 1; fi
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy everything from the current directory
 COPY . .
