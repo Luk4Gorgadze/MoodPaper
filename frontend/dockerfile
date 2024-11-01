@@ -5,13 +5,20 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files first for caching purposes
-COPY package.json ./
+COPY package.json ./ 
+COPY package-lock.json ./ # If you have a package-lock.json, copy it too for consistent installs
+
+# Check if package.json exists
+RUN if [ ! -f package.json ]; then echo "package.json not found!"; exit 1; fi
 
 # Install dependencies
 RUN npm ci
 
 # Copy everything from the current directory
 COPY . .
+
+# Check if necessary files/folders exist after copy
+RUN if [ ! -d .next ]; then echo ".next directory not found!"; exit 1; fi
 
 # Build the application
 RUN npm run build
