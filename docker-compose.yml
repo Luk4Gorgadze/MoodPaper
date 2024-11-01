@@ -15,33 +15,5 @@ services:
       - ./backend/.env
     restart: always
 
-  backend:
-    build: ./backend
-    command: python manage.py runserver 0.0.0.0:8800
-    #    command: uvicorn backend.asgi:application --host 0.0.0.0 --port 8800 --workers 4
-    volumes:
-      - ./backend:/app
-    ports:
-      - "8800:8800"
-    depends_on:
-      - db
-    env_file:
-      - .env
-    restart: always
-
-  frontend:
-    build:
-      context: ./frontend
-    volumes:
-      - ./frontend:/app
-    ports:
-      - "3000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    env_file:
-      - .env.local
-    depends_on:
-      - backend
-
 volumes:
   postgres_data:
