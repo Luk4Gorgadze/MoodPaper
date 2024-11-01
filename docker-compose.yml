@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     env_file:
-      - ./backend/.env
+      - .env
     restart: always
 
   backend:
