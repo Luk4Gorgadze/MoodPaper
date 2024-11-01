@@ -5,7 +5,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files first for caching purposes
-COPY package*.json ./
+COPY package.json ./
 
 # Install dependencies
 RUN npm ci
