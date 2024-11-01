@@ -1,3 +1,6 @@
 FROM nginx:alpine
 
 COPY default.conf /etc/nginx/conf.d/default.conf 
+
+# After building the image, run the following command to prune old images:
+# docker image prune -f 
