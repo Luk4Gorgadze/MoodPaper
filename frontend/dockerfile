@@ -5,8 +5,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package files first for caching purposes
-COPY package.json ./ 
-COPY package-lock.json ./ # If you have a package-lock.json, copy it too for consistent installs
+COPY package.json ./
 
 # Check if package.json exists
 RUN if [ ! -f package.json ]; then echo "package.json not found!"; exit 1; fi
