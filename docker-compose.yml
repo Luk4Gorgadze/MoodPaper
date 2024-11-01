@@ -45,7 +45,7 @@ services:
       - backend
 
   nginx:
-    image: nginx:alpine
+    image: ./nginx
     ports:
       - "70:70"
     volumes:
