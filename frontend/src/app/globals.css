@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cool background effect */
+:root {
+  --color-bg1: rgb(10, 0, 15);
+  /* Almost black background color */
+  --color-bg2: rgb(0, 2, 10);
+  /* Almost black background color */
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: screen;
+  /* Changed blend mode for better visibility */
+}
+
+.gradient-bg {
+  background: #060a14;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-height: 100vh;
+  /* Darker background color */
+}
+
+.gradients-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  /* Reduced opacity for darker effect */
+}
+
+.blob1 {
+  width: 500px;
+  height: 500px;
+  background: #2f2985;
+  /* Darker indigo */
+  /* Indigo */
+  top: 20%;
+  left: 15%;
+}
+
+.blob2 {
+  width: 600px;
+  height: 600px;
+  background: #14378c;
+  /* Darker blue */
+  /* Blue */
+  top: 50%;
+  right: 20%;
+}
+
+.blob3 {
+  width: 450px;
+  height: 450px;
+  background: #4a228f;
+  /* Darker purple */
+  /* Purple */
+  bottom: 10%;
+  left: 30%;
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+html,
+body {
+  transition-property: opacity, transform, background;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  transform-origin: center;
+  -webkit-transform-origin: center;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer/Edge */
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  /* Add this to ensure full height */
+}
+
+/* WebKit browsers (Chrome, Safari) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.page-transition {
+  opacity: 0;
+  background: black;
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.page-transition-enter {
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  body {
+    transition-duration: 0.3s;
+  }
+
+  .page-transition {
+    transform: scale(0.97);
+    -webkit-transform: scale(0.97);
+    transition: all 0.25s ease-out;
+  }
+}

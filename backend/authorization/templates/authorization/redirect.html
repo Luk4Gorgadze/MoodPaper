@@ -1,0 +1,40 @@
+<!-- templates/authorization/redirect.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redirecting...</title>
+    <script>
+        window.onload = function () {
+            // Fetch the authentication data
+            fetch('/authorization/get-auth-data/', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Encode the auth data to pass it safely in the URL
+                    const encodedData = encodeURIComponent(JSON.stringify(data));
+                    // Redirect to frontend with auth data as a query parameter
+                    window.location.href = `{{ frontend_url }}?auth_data=${encodedData}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Redirect anyway after a short delay if there's an error
+                    setTimeout(() => {
+                        window.location.href = '{{ frontend_url }}';
+                    }, 1000);
+                });
+        };
+    </script>
+</head>
+
+<body>
+    <p>Redirecting to application...</p>
+</body>
+
+</html>
