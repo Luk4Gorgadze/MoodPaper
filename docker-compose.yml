@@ -16,7 +16,9 @@ services:
     restart: always
 
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: ./backend/dockerfile
     command: python manage.py runserver 0.0.0.0:8800
     #    command: uvicorn backend.asgi:application --host 0.0.0.0 --port 8800 --workers 4
     volumes:
@@ -29,7 +31,9 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: ./frontend/dockerfile
+      target: deployment
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -41,7 +45,10 @@ services:
       - backend
 
   nginx:
-    build: ./nginx
+    build:
+      context: .
+      dockerfile: ./nginx/dockerfile
+      target: deployment
 
     volumes:
       - ./nginx:/etc/nginx/conf.d:ro
