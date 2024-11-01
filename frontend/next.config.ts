@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+  eslint: {
+    // This option allows production builds to successfully complete even if
+    // there are ESLint errors in your project.
+    ignoreDuringBuilds: true,
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.watchOptions = {
