@@ -165,8 +165,9 @@ SOCIALACCOUNT_PROVIDERS = {
 
 ALLOWED_HOSTS = [
     "localhost",
-    "moodpaper.kinde.com",  # Add Kinde domain
-    "https://www.moodpaper.art"
+    "moodpaper.kinde.com",
+    "www.moodpaper.art",
+    "moodpaper.art"  # Optional if you want to allow the root domain
 ]
 
 AUTH_USER_MODEL = 'users.User'
