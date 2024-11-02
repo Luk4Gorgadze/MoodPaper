@@ -1,3 +1,4 @@
+import os
 import random
 import string
 from django.shortcuts import render, redirect
@@ -11,6 +12,9 @@ from django.urls import reverse
 from users.serializers import UserSerializer
 from users.constants import FREE_TOKEN_COUNT, SubscriptionEnum
 from users.models import Subscription
+
+CURRENT_BACKEND_URL = os.environ.get("CURRENT_BACKEND_URL")
+
 def __get_user_context(user):
     auth_data = UserAuthData.objects.filter(user=user).first()
     if user and auth_data:
@@ -94,7 +98,7 @@ def callback(request):
 
         request.session['user_id'] = user_id
 
-    return HttpResponseRedirect(request.build_absolute_uri(reverse('set_auth_cookies')))
+    return HttpResponseRedirect(CURRENT_BACKEND_URL + 'auth/set-auth-cookies')
 
 def set_auth_cookies(request):
     frontend_url = settings.FRONTEND_URL
