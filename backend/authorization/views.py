@@ -94,7 +94,7 @@ def callback(request):
 
         request.session['user_id'] = user_id
 
-    return HttpResponseRedirect(reverse('set_auth_cookies'))
+    return HttpResponseRedirect(request.build_absolute_uri(reverse('set_auth_cookies')))
 
 def set_auth_cookies(request):
     frontend_url = settings.FRONTEND_URL
