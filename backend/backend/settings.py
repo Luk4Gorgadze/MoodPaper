@@ -200,10 +200,6 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-# Security settings
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SAMESITE = 'Lax'
-
 SESSION_COOKIE_HTTPONLY = True  # Changed to True for better security
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False

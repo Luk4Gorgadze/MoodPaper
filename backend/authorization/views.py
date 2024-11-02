@@ -108,8 +108,8 @@ def set_auth_cookies(request):
     
     # Set cookies with 1 year expiration
     csrf_token = get_token(request)
-    response.set_cookie('csrftoken', csrf_token, max_age=31536000, domain=settings.COOKIE_DOMAIN, samesite='Lax', path='/')
-    response.set_cookie('sessionid', request.session.session_key, max_age=31536000, domain=settings.COOKIE_DOMAIN, samesite='Lax', path='/')
+    response.set_cookie('csrftoken', csrf_token, max_age=31536000, domain=settings.COOKIE_DOMAIN, path='/')
+    response.set_cookie('sessionid', request.session.session_key, max_age=31536000, domain=settings.COOKIE_DOMAIN, path='/')
     response.delete_cookie('auth_pending')
     
     # Set custom header for Nginx to handle redirect properly
