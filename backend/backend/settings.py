@@ -211,7 +211,7 @@ CSRF_COOKIE_HTTPONLY = False
 
 # Frontend and cookie settings
 FRONTEND_URL = os.environ.get("CURRENT_FRONTEND_URL") # Changed to match Nginx
-COOKIE_DOMAIN = "localhost"
+COOKIE_DOMAIN = os.environ.get("SESSION_COOKIE_DOMAIN")
 CSRF_COOKIE_NAME = 'csrftoken'
 CSRF_USE_SESSIONS = False
 
