@@ -109,7 +109,7 @@ def set_auth_cookies(request):
     # Set cookies with 1 year expiration
     csrf_token = get_token(request)
     print(f"Setting CSRF token: {csrf_token}")  # Debugging log
-    response.set_cookie('csrftoken', csrf_token, max_age=31536000, domain=settings.COOKIE_DOMAIN, path='/')
+    response.set_cookie('csrftoken', csrf_token, max_age=31536000, path='/')
     print("1")
     response.set_cookie('sessionid', request.session.session_key, max_age=31536000, domain=settings.COOKIE_DOMAIN, path='/')
     print("2")

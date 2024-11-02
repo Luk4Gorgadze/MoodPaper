@@ -203,32 +203,26 @@ CORS_ALLOW_HEADERS = [
 
 SESSION_COOKIE_HTTPONLY = False  # Changed to True for better security
 SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False
 
 # Frontend and cookie settings
 FRONTEND_URL = os.environ.get("CURRENT_FRONTEND_URL") # Changed to match Nginx
 COOKIE_DOMAIN = os.environ.get("SESSION_COOKIE_DOMAIN")
-CSRF_COOKIE_NAME = 'csrftoken'
-CSRF_USE_SESSIONS = False
 
 # Additional settings
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://localhost/djangoapi",
     "https://moodpaper.kinde.com",
-    "http://www.moodpaper.art",
-    "https://www.moodpaper.art"
+    "http://*.moodpaper.art",
+    "https://*.moodpaper.art"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 
 SESSION_COOKIE_DOMAIN = os.environ.get("SESSION_COOKIE_DOMAIN")
-CSRF_COOKIE_DOMAIN = os.environ.get("SESSION_COOKIE_DOMAIN")
 
-SESSION_COOKIE_AGE = 31536000 
-CSRF_COOKIE_AGE = 31536000
+SESSION_COOKIE_AGE = 31536000
 
 # Additional Security Headers
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
