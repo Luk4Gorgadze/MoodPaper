@@ -79,7 +79,7 @@ export default function PriceCards() {
                             </ul>
                             {/* <button className="w-full px-4 py-2 bg-accent text-white font-bold rounded hover:bg-accent/80">Get Started</button> */}
                             {user && (
-                                <PaypalWrapper user={user} order_price={2} subscription_type="STANDARD" onPaymentSuccess={handlePaymentSuccess} />
+                                <PaypalWrapper user={user} order_price={20} subscription_type="STANDARD" onPaymentSuccess={handlePaymentSuccess} />
                             )}
                             {!user && (
                                 <div className="w-full px-4 py-2 bg-red-600 text-white font-bold rounded">Log In to Purchase</div>

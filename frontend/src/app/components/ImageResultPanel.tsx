@@ -93,7 +93,7 @@ export default function ImageResultPanel({
                         alt="Left image"
                         width={newImageData.width}
                         height={newImageData.height}
-                        className={`object-cover rounded-xl hover:scale-110 transition-transform duration-200`}
+                        className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
                         quality={100}
                         priority={true}
                         onLoad={() => setIsImageLoading(false)}
@@ -179,7 +179,7 @@ export default function ImageResultPanel({
                     </div>
                     <button
                         onClick={handleFinish}
-                        className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-110'
+                        className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-102'
                     >
                         Done
                     </button>

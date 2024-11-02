@@ -13,10 +13,11 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "MOODPAPER",
-  description: "Generate a wallpaper based on your mood with MOODPAPER",
-  icons: {
-    icon: '/favicon.png',
+  metadataBase: new URL('https://www.moodpaper.art/'),
+  title: "Moodpaper",
+  description: "Take a short quiz and generate a wallpaper based on your mood",
+  openGraph: {
+    images: '/moodpaper.png',
   },
 };
 
@@ -38,8 +39,7 @@ export default function RootLayout({
             <Footer />
           </Container>
         </LoadingProvider>
-
-
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="817b2ed2-6948-4853-af5f-fadedc64648d"></script>
       </body>
     </html>
   );
