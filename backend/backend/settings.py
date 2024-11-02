@@ -201,8 +201,8 @@ CORS_ALLOW_HEADERS = [
 
 
 SESSION_COOKIE_HTTPONLY = True  # Changed to True for better security
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
 
 # Frontend and cookie settings
