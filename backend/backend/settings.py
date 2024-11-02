@@ -166,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
 ALLOWED_HOSTS = [
     "localhost",
     "moodpaper.kinde.com",  # Add Kinde domain
-    "https://www.moodpaper.art/"
+    "https://www.moodpaper.art"
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -176,7 +176,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "https://moodpaper.kinde.com",
-    "https://www.moodpaper.art/"
+    "https://www.moodpaper.art"
 ]
 CORS_ALLOWED_METHODS = [
     'GET',
@@ -218,7 +218,7 @@ CSRF_USE_SESSIONS = False
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "https://moodpaper.kinde.com",
-    "https://www.moodpaper.art/"
+    "https://www.moodpaper.art"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
