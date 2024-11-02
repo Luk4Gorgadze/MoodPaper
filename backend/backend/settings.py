@@ -167,7 +167,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "moodpaper.kinde.com",
     "www.moodpaper.art",
-    "moodpaper.art"  # Optional if you want to allow the root domain
+    "moodpaper.art" ,
+    "95.217.1.59" # Optional if you want to allow the root domain
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -214,6 +215,7 @@ CSRF_USE_SESSIONS = False
 # Additional settings
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
+    "http://localhost/djangoapi",
     "https://moodpaper.kinde.com",
     "http://www.moodpaper.art",
     "https://www.moodpaper.art"
