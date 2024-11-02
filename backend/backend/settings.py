@@ -215,6 +215,7 @@ CSRF_USE_SESSIONS = False
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "https://moodpaper.kinde.com",
+    "http://www.moodpaper.art",
     "https://www.moodpaper.art"
 ]
 
