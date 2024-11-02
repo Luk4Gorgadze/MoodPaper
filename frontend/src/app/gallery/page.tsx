@@ -150,7 +150,7 @@ export default function Gallery() {
 
                 <p className="text-lg mb-10"><span className="text-accent font-bold">Feel free to download,</span> since users are able to share their wallpapers with the public if they want</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[800px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 min-h-[800px]">
                 {isLoading ? (
                     // Replace loading text with skeleton grid
                     Array.from({ length: 9 }).map((_, index) => (

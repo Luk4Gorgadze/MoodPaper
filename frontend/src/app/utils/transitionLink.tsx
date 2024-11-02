@@ -26,9 +26,9 @@ export const TransitionLink = ({ href, children, item, ...props }: TransitionLin
         const body = document.querySelector('body')
 
         body?.classList.add('page-transition')
-        await sleep(500)
+        await sleep(100)
         router.push(item.href)
-        await sleep(500)
+        await sleep(200)
         body?.classList.remove('page-transition')
     }
     return (
