@@ -178,7 +178,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "https://moodpaper.kinde.com",
-    "https://www.moodpaper.art"
+    "https://www.moodpaper.art",
+    "https://moodpaper.art"
 ]
 CORS_ALLOWED_METHODS = [
     'GET',
