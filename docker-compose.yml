@@ -18,6 +18,7 @@ services:
     #    command: uvicorn backend.asgi:application --host 0.0.0.0 --port 8800 --workers 4
     volumes:
       - ./backend:/app
+      - static_volume:/app/static
     ports:
       - "8800:8800"
     depends_on:
@@ -45,9 +46,11 @@ services:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/app/static
     depends_on:
       - backend
       - frontend
       - db
 volumes:
   postgres_data:
+  static_volume:
