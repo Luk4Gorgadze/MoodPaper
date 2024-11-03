@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../components/Container'
 import { useContext, useState } from 'react'
@@ -88,16 +87,13 @@ export default function ImageResultPanel({
                     {isImageLoading && (
                         <ImageSkeleton deviceType={selectedDevice} />
                     )}
-                    <Image
+                    <img
                         src={newImageData.image_url}
                         alt="Left image"
                         width={newImageData.width}
                         height={newImageData.height}
                         className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
-                        quality={100}
-                        priority={true}
                         onLoad={() => setIsImageLoading(false)}
-                        unoptimized={true}
                     />
                     <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <button
