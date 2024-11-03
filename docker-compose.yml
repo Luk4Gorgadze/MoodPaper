@@ -31,7 +31,6 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.prod
     volumes:
-      - ./frontend:/luking
       - /app/node_modules
     ports:
       - "3000:3000"
