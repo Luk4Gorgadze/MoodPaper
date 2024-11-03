@@ -37,7 +37,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     env_file:
-      - .env.local
+      - .env.prod
     depends_on:
       - backend
   nginx:
