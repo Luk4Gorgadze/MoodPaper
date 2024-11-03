@@ -203,7 +203,7 @@ export default function ImageResultPanel({
                         onClick={handleFinish}
                         className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-105'
                     >
-                        Dones
+                        Done
                     </button>
                 </div>
             </div>
