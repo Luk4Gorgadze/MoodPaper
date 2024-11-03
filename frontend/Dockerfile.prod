@@ -10,6 +10,9 @@ COPY package*.json .
 COPY . .
 
 # Install dependencies
+RUN npm install 
+
+# Install dependencies
 RUN npm run build
 
 # Expose the port the app runs on
