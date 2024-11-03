@@ -2,20 +2,20 @@
 FROM node:20.9.0
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /luking
 
 # Copy package.json and package-lock.json
 COPY package*.json .
 
 # List files after copying package files
-RUN ls -l /app
+RUN ls -l /luking
 
 COPY . .
 
 RUN pwd
 
 # List files after copying the rest of the application
-RUN ls -l /app
+RUN ls -l /luking
 
 # Install dependencies
 RUN npm install 
