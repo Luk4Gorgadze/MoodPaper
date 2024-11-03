@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: true,
   },
   eslint: {
     // This option allows production builds to successfully complete even if
