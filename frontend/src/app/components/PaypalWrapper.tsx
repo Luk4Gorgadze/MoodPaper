@@ -19,7 +19,7 @@ export default function PaypalWrapper({ user, order_price, onPaymentSuccess, sub
         try {
 
 
-            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}paypal/create-order/`, {
+            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/paypal/create-order/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -46,7 +46,7 @@ export default function PaypalWrapper({ user, order_price, onPaymentSuccess, sub
 
     const paypalCaptureOrder = async (orderID: string, subscription_type: string) => {
         try {
-            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}paypal/capture-order/`, {
+            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/paypal/capture-order/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
