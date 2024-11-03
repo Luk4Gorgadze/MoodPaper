@@ -53,7 +53,7 @@ const QuizPanel: FC<QuizPanelProps> = ({
             setCurrentAnswer('')
             setIsResultImageLoading(true)
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpaper/`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/mood/mood-wallpaper/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

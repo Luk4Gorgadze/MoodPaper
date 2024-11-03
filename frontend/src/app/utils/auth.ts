@@ -13,7 +13,7 @@ export const checkAuthStatus = async (
 
     if (isAuth) {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/user-info`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/auth/user-info`, {
                 credentials: 'include',
             });
             if (response.ok) {

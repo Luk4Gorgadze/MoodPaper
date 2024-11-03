@@ -44,7 +44,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated, user, setUser }: HeaderPr
     const handleSignUp = async () => {
         try {
             console.log('Initiating sign up...');
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/register`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/auth/register`, {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -76,7 +76,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated, user, setUser }: HeaderPr
     const handleSignIn = async () => {
         try {
             console.log('Initiating sign in...');
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/auth/login`, {
                 method: 'GET',
                 credentials: 'include',
             });
@@ -115,7 +115,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated, user, setUser }: HeaderPr
             }, {} as { [key: string]: string })
 
             // Send request to logout endpoint
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/logout`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/auth/logout`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

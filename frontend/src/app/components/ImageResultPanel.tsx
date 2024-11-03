@@ -74,7 +74,7 @@ export default function ImageResultPanel({
                 is_public: isPublic
             };
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpaper-finish/`, {
+            const response = await fetch(`https://www.moodpaper.art/djangoapi/mood/mood-wallpaper-finish/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

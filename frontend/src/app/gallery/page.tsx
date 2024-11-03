@@ -49,7 +49,7 @@ export default function Gallery() {
             // await new Promise(resolve => setTimeout(resolve, 200));
 
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpapers-public/?page=${page}&width=${width}&height=${height}`,
+                `https://www.moodpaper.art/djangoapi/mood/mood-wallpapers-public/?page=${page}&width=${width}&height=${height}`,
                 {
                     method: 'GET',
                     credentials: 'include',
