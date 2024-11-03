@@ -26,7 +26,6 @@ WORKDIR /luking
 COPY --from=build /luking/.next ./.next
 COPY --from=build /luking/node_modules ./node_modules
 COPY --from=build /luking/package.json ./package.json
-COPY .env.prod .env
 
 # Expose the port the app runs on
 EXPOSE 3000
