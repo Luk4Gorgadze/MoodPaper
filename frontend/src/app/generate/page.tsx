@@ -102,6 +102,7 @@ export default function Generate() {
                             />
                         ) : quizDone ? (
                             <ImageResultPanel
+                                key={newImageData.image_url}
                                 isPublic={isImagePublic}
                                 setIsPublic={setIsImagePublic}
                                 currentQuestionIndex={currentQuestionIndex}
@@ -112,7 +113,6 @@ export default function Generate() {
                                 setUserAnswers={setUserAnswers}
                                 setIsQuizOpen={setIsQuizOpen}
                                 newImageData={newImageData}
-
                             />
                         ) : (
                             <QuizPanel

@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../components/Container'
 import { useContext, useState } from 'react'
@@ -22,12 +21,6 @@ const ImageSkeleton = ({ deviceType }: { deviceType: 'desktop' | 'mobile' }) => 
         <div className="w-full h-full bg-gray-700"></div>
     </div>
 );
-
-// Function to create a cache-busting URL
-const getImageUrl = (url: string) => {
-    const cacheBuster = new Date().getTime(); // You can also use Math.random() for a random number
-    return `${url}?cb=${cacheBuster}`;
-};
 
 export default function ImageResultPanel({
     isPublic,
@@ -96,15 +89,13 @@ export default function ImageResultPanel({
                     {isImageLoading && (
                         <ImageSkeleton deviceType={selectedDevice} />
                     )}
-                    <Image
-                        src={getImageUrl(newImageData.image_url)}
-                        key={newImageData.image_url}
+                    <img
+                        src={newImageData.image_url}
                         alt="Left image"
                         width={newImageData.width}
                         height={newImageData.height}
                         className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
-                        quality={100}
-                        priority={true}
+                        loading="lazy"
                         onLoad={() => setIsImageLoading(false)}
                     />
                     <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
