@@ -23,6 +23,12 @@ const ImageSkeleton = ({ deviceType }: { deviceType: 'desktop' | 'mobile' }) => 
     </div>
 );
 
+// Function to create a cache-busting URL
+const getImageUrl = (url: string) => {
+    const cacheBuster = new Date().getTime(); // You can also use Math.random() for a random number
+    return `${url}?cb=${cacheBuster}`;
+};
+
 export default function ImageResultPanel({
     isPublic,
     setIsPublic,
@@ -91,7 +97,7 @@ export default function ImageResultPanel({
                         <ImageSkeleton deviceType={selectedDevice} />
                     )}
                     <Image
-                        src={newImageData.image_url}
+                        src={getImageUrl(newImageData.image_url)}
                         key={newImageData.image_url}
                         alt="Left image"
                         width={newImageData.width}
