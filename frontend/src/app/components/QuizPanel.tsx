@@ -56,6 +56,11 @@ const QuizPanel: FC<QuizPanelProps> = ({
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpaper/`, {
                 method: 'POST',
                 credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken') || '',
+                    'Cookie': `sessionid=${getCookie('sessionid')}; csrftoken=${getCookie('csrftoken')}`
+                },
                 body: JSON.stringify({
                     asked_questions: quizQuestions,
                     answers: finalAnswers,
