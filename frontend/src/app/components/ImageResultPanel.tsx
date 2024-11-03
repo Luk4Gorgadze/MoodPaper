@@ -97,6 +97,7 @@ export default function ImageResultPanel({
                         quality={100}
                         priority={true}
                         onLoad={() => setIsImageLoading(false)}
+                        unoptimized={true}
                     />
                     <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <button
