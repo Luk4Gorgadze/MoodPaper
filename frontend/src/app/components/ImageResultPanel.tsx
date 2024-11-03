@@ -90,7 +90,8 @@ export default function ImageResultPanel({
                         <ImageSkeleton deviceType={selectedDevice} />
                     )}
                     <img
-                        src={`${newImageData.image_url}?t=${Date.now()}`}
+                        key={newImageData.id}
+                        src={newImageData.image_url}
                         alt="Left image"
                         width={newImageData.width}
                         height={newImageData.height}

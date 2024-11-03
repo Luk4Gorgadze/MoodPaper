@@ -102,7 +102,7 @@ export default function Generate() {
                             />
                         ) : quizDone ? (
                             <ImageResultPanel
-                                key={newImageData.image_url}
+                                key={quizDone ? 'true' : 'false'}
                                 isPublic={isImagePublic}
                                 setIsPublic={setIsImagePublic}
                                 currentQuestionIndex={currentQuestionIndex}
