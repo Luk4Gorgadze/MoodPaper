@@ -1,24 +1,33 @@
-# Prod START
-
 # Use Node.js as the base image
 FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package files first for caching purposes
 COPY package.json ./
 
-# Install dependencies
-RUN npm install
+# Check if package.json exists
+RUN if [ ! -f package.json ]; then echo "package.json not found!"; exit 1; fi
 
-# Build the Next.js application
+# Print the current directory and install dependencies
+RUN pwd && npm install
+
+# Copy everything from the current directory
+COPY . .
+
+# Build the application
 RUN npm run build
+
+# Ensure that the build output directory is created
+# Check if necessary files/folders exist after copy
+RUN if [ ! -d .next ]; then echo ".next directory not found!"; exit 1; fi
+RUN ls -la .next
 
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the application in production mode
+# Start the application
 CMD ["npm", "start"]
 
 # Prod END
