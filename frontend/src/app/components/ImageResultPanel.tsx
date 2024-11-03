@@ -103,7 +103,7 @@ export default function ImageResultPanel({
     };
 
     return (
-        <div className='mx-auto flex flex-col md:flex-row gap-8'>
+        <div className='mx-auto flex flex-col md:flex-row gap-8' key={imageUrl}>
             <div className='w-full md:w-1/2'>
                 <div className="relative group">
                     {isImageLoading && (
@@ -116,7 +116,7 @@ export default function ImageResultPanel({
                             alt="Left image"
                             width={newImageData.width}
                             height={newImageData.height}
-                            className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
+                            className={`object-cover rounded-xl hover:scale-105 transition-transform duration-200`}
                             loading="lazy"
                         />
                     )}
@@ -201,9 +201,9 @@ export default function ImageResultPanel({
                     </div>
                     <button
                         onClick={handleFinish}
-                        className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-102'
+                        className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-105'
                     >
-                        Done
+                        Dones
                     </button>
                 </div>
             </div>
