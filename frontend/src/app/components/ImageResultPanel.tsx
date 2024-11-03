@@ -1,7 +1,7 @@
 'use client'
 import { getCookie } from '../utils/cookies';
 import { AuthContext } from '../components/Container'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 interface ImageResultPanelProps {
     isPublic: boolean;
@@ -36,6 +36,26 @@ export default function ImageResultPanel({
 }: ImageResultPanelProps) {
     const [isImageLoading, setIsImageLoading] = useState(true);
     const { user, selectedDevice } = useContext(AuthContext);
+    const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchImage = async () => {
+            try {
+                const response = await fetch(newImageData.image_url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch image');
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                setImageUrl(url);
+                setIsImageLoading(false);
+            } catch (error) {
+                console.error('Error fetching image:', error);
+            }
+        };
+
+        fetchImage();
+    }, [newImageData.image_url]);
 
     const handleDone = () => {
         setCurrentQuestionIndex(0);
@@ -89,16 +109,17 @@ export default function ImageResultPanel({
                     {isImageLoading && (
                         <ImageSkeleton deviceType={selectedDevice} />
                     )}
-                    <img
-                        key={newImageData.id}
-                        src={newImageData.image_url}
-                        alt="Left image"
-                        width={newImageData.width}
-                        height={newImageData.height}
-                        className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
-                        loading="lazy"
-                        onLoad={() => setIsImageLoading(false)}
-                    />
+                    {imageUrl && (
+                        <img
+                            key={newImageData.id}
+                            src={imageUrl}
+                            alt="Left image"
+                            width={newImageData.width}
+                            height={newImageData.height}
+                            className={`object-cover rounded-xl hover:scale-102 transition-transform duration-200`}
+                            loading="lazy"
+                        />
+                    )}
                     <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <button
                             onClick={async (e) => {
