@@ -58,11 +58,6 @@ export default function ImageResultPanel({
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpaper-finish/`, {
                 method: 'POST',
                 credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken') || '',
-                    'Cookie': `sessionid=${getCookie('sessionid')}; csrftoken=${getCookie('csrftoken')}`
-                },
                 body: JSON.stringify(imageDataToSend)
             });
 
@@ -70,6 +65,8 @@ export default function ImageResultPanel({
             if (!response.ok) {
                 throw new Error(data.message || 'Failed to save image');
             }
+
+            console.log(data)
 
             // Reset the quiz state after successful save
             setCurrentQuestionIndex(0);
