@@ -38,5 +38,5 @@ COPY --from=build /luking/package.json ./package.json
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application and print environment variables
+CMD ["sh", "-c", "echo NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL} && echo NEXT_PUBLIC_PAYPAL_CLIENT_ID=${NEXT_PUBLIC_PAYPAL_CLIENT_ID} && npm start"]
