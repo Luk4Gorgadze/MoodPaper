@@ -74,7 +74,7 @@ export default function Generate() {
     return (
         <main className="flex w-full min-h-screen flex-col justify-between text-white mt-10">
             <div className="">
-
+                DELETE THIS
                 {!isAuthenticated ? (
                     <div>
                         <h1 className="text-2xl font-bold mb-4">Generate Images</h1>
