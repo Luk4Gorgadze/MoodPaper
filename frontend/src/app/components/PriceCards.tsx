@@ -60,7 +60,7 @@ export default function PriceCards() {
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">30 tokens and access to public library which stores your images</p>
                         <div className="mt-auto">
                             <div className="flex justify-center items-baseline my-8">
-                                <span className="mr-2 text-5xl font-extrabold">$20</span>
+                                <span className="mr-2 text-5xl font-extrabold">$10</span>
                                 <span className="text-gray-500 dark:text-gray-400"></span>
                             </div>
                             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -79,7 +79,7 @@ export default function PriceCards() {
                             </ul>
                             {/* <button className="w-full px-4 py-2 bg-accent text-white font-bold rounded hover:bg-accent/80">Get Started</button> */}
                             {user && (
-                                <PaypalWrapper user={user} order_price={20} subscription_type="STANDARD" onPaymentSuccess={handlePaymentSuccess} />
+                                <PaypalWrapper user={user} order_price={10} subscription_type="STANDARD" onPaymentSuccess={handlePaymentSuccess} />
                             )}
                             {!user && (
                                 <div className="w-full px-4 py-2 bg-red-600 text-white font-bold rounded">Log In to Purchase</div>
@@ -96,7 +96,7 @@ export default function PriceCards() {
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">90 tokens and access to public library which stores your images</p>
                         <div className="mt-auto">
                             <div className="flex justify-center items-baseline my-8">
-                                <span className="mr-2 text-5xl font-extrabold">$40</span>
+                                <span className="mr-2 text-5xl font-extrabold">$20</span>
                                 <span className="text-gray-500 dark:text-gray-400"></span>
                             </div>
                             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -115,7 +115,7 @@ export default function PriceCards() {
                             </ul>
                             {/* <button className="w-full px-4 py-2 bg-accent text-white font-bold rounded hover:bg-accent/80">Get Started</button> */}
                             {user && (
-                                <PaypalWrapper user={user} order_price={40} subscription_type="PREMIUM" onPaymentSuccess={handlePaymentSuccess} />
+                                <PaypalWrapper user={user} order_price={20} subscription_type="PREMIUM" onPaymentSuccess={handlePaymentSuccess} />
                             )}
                             {!user && (
                                 <div className="w-full px-4 py-2 bg-red-600 text-white font-bold rounded">Log In to Purchase</div>
