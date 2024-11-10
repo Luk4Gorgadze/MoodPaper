@@ -18,8 +18,8 @@ ARG NEXT_PUBLIC_BACKEND_API_URL
 ARG NEXT_PUBLIC_PAYPAL_CLIENT_ID
 
 # Set environment variables
-ENV NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
-ENV NEXT_PUBLIC_PAYPAL_CLIENT_ID=${NEXT_PUBLIC_PAYPAL_CLIENT_ID}
+ENV NEXT_PUBLIC_BACKEND_API_URL=$NEXT_PUBLIC_BACKEND_API_URL
+ENV NEXT_PUBLIC_PAYPAL_CLIENT_ID=$NEXT_PUBLIC_PAYPAL_CLIENT_ID
 
 # Build the Next.js app
 RUN npm run build
@@ -34,10 +34,7 @@ WORKDIR /luking
 COPY --from=build /luking/.next ./.next
 COPY --from=build /luking/node_modules ./node_modules
 COPY --from=build /luking/package.json ./package.json
-
-# Set environment variables again to ensure they're available at runtime
-ENV NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
-ENV NEXT_PUBLIC_PAYPAL_CLIENT_ID=${NEXT_PUBLIC_PAYPAL_CLIENT_ID}
+COPY --from=build /luking/public ./public
 
 # Expose the port the app runs on
 EXPOSE 3000

@@ -20,7 +20,7 @@ export default function QuizStarter({ selectedDevice, setSelectedDevice, isQuizO
     const getQuizQuestions = async () => {
         try {
             setIsLoading(true)
-            const response = await fetch(`https://www.moodpaper.art/djangoapi/mood/mood-wallpaper-quiz/`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpaper-quiz/`, {
                 credentials: 'include',
                 headers: {
                     'X-CSRFToken': getCookie('csrftoken') || '',

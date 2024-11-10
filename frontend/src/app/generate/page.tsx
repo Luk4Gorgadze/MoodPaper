@@ -9,6 +9,7 @@ import ImageResultPanel from '../components/ImageResultPanel'
 import { getCookie } from '../utils/cookies'
 import { checkAuthStatus } from '@/app/utils/auth'
 
+
 export default function Generate() {
     const {
         user,

@@ -4,6 +4,7 @@ import GalleryImage from '../components/GalleryImage'
 import { useState, useEffect } from 'react'
 import { getCookie } from '../utils/cookies';
 
+
 // Add type definition
 interface GalleryImage {
     id: number;
@@ -49,7 +50,7 @@ export default function Gallery() {
             // await new Promise(resolve => setTimeout(resolve, 200));
 
             const response = await fetch(
-                `https://www.moodpaper.art/djangoapi/mood/mood-wallpapers-public/?page=${page}&width=${width}&height=${height}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/mood/mood-wallpapers-public/?page=${page}&width=${width}&height=${height}`,
                 {
                     method: 'GET',
                     credentials: 'include',

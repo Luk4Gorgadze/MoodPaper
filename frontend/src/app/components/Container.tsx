@@ -4,6 +4,7 @@ import Header from './Header';
 import { User } from '@/app/utils/types';
 import { checkAuthStatus } from '../utils/auth';
 
+
 interface AuthContextType {
     user: User | null;
     setUser: (value: User | null) => void;

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { getCookie } from '../utils/cookies'
 import { User } from '@/app/utils/types'
 
+
 interface PaypalWrapperProps {
     user: User;
     order_price: number;
@@ -19,7 +20,7 @@ export default function PaypalWrapper({ user, order_price, onPaymentSuccess, sub
         try {
 
 
-            let response = await fetch(`https://www.moodpaper.art/djangoapi/paypal/create-order/`, {
+            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/paypal/create-order/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -46,7 +47,7 @@ export default function PaypalWrapper({ user, order_price, onPaymentSuccess, sub
 
     const paypalCaptureOrder = async (orderID: string, subscription_type: string) => {
         try {
-            let response = await fetch(`https://www.moodpaper.art/djangoapi/paypal/capture-order/`, {
+            let response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/paypal/capture-order/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -71,7 +72,7 @@ export default function PaypalWrapper({ user, order_price, onPaymentSuccess, sub
         <div style={{ colorScheme: 'none' }}>
             <PayPalScriptProvider
                 options={{
-                    clientId: 'Ab4b3iIz4QQAQNs5YhULVPGaYuultw_dCt63tpezPTawWxFuWj31Y6gSYqJSPGJPQUXiXNXn5chfERhj',
+                    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID : '',
                     currency: 'USD',
                     intent: 'capture'
                 }}
