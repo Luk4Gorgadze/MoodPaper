@@ -14,7 +14,7 @@ services:
     restart: always
   backend:
     build: ./backend
-    # command: python manage.py runserver 0.0.0.0:8800
+    # command: uvicorn backend.asgi:application --host 0.0.0.0 --port 8800 --workers 15 --reload
     command: uvicorn backend.asgi:application --host 0.0.0.0 --port 8800 --workers 15
     volumes:
       - ./backend:/app
@@ -34,6 +34,7 @@ services:
         - NEXT_PUBLIC_BACKEND_API_URL=${NEXT_PUBLIC_BACKEND_API_URL}
         - NEXT_PUBLIC_PAYPAL_CLIENT_ID=${NEXT_PUBLIC_PAYPAL_CLIENT_ID}
     volumes:
+      - ./frontend:/luking
       - /app/node_modules
     ports:
       - "3000:3000"

@@ -4,6 +4,10 @@ import Header from './Header';
 import { User } from '@/app/utils/types';
 import { checkAuthStatus } from '../utils/auth';
 
+interface QuizQuestion {
+    question: string;
+    answers: string[];
+}
 
 interface AuthContextType {
     user: User | null;
@@ -14,8 +18,8 @@ interface AuthContextType {
     setSelectedDevice: (value: 'mobile' | 'desktop') => void;
     isQuizOpen: boolean;
     setIsQuizOpen: (value: boolean) => void;
-    quizQuestions: string[];
-    setQuizQuestions: (questions: string[]) => void;
+    quizQuestions: QuizQuestion[];
+    setQuizQuestions: (questions: QuizQuestion[]) => void;
     userAnswers: string[];
     setUserAnswers: (answers: string[]) => void;
     currentAnswer: string;
@@ -81,7 +85,7 @@ const Container: React.FC<ContainerProps> = ({ children, className = '' }) => {
     const [user, setUser] = useState<User | null>(null);
     const [selectedDevice, setSelectedDevice] = useState<'mobile' | 'desktop'>('desktop');
     const [isQuizOpen, setIsQuizOpen] = useState(false);
-    const [quizQuestions, setQuizQuestions] = useState<string[]>([]);
+    const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
     const [userAnswers, setUserAnswers] = useState<string[]>([]);
     const [currentAnswer, setCurrentAnswer] = useState('');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

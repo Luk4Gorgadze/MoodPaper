@@ -17,9 +17,9 @@ export default function PriceCards() {
         <div className="mt-[60px] mb-[100px]">
             <div className="grid md:grid-cols-3 gap-8">
                 {/* Starter Card */}
-                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-background dark:text-white">
+                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 backdrop-blur-xl bg-white/10 rounded-lg xl:p-8 dark:text-white">
                     <div className="flex flex-col h-full justify-start">
-                        <h3 className="mb-4 text-2xl font-semibold">Starter</h3>
+                        <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-accent to-blue-900 text-transparent bg-clip-text animate-gradient bg-[length:200%_100%]">Starter</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Perfect for community enthusiasts and creative minds</p>
                         <div className="">
                             <div className="flex justify-center items-baseline my-8">
@@ -58,9 +58,9 @@ export default function PriceCards() {
                 </div>
 
                 {/* Standard Card */}
-                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-background dark:text-white">
+                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 backdrop-blur-xl bg-white/10 rounded-lg xl:p-8 dark:text-white">
                     <div className="flex flex-col h-full">
-                        <h3 className="mb-4 text-2xl font-semibold">Standard</h3>
+                        <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-accent to-blue-900 text-transparent bg-clip-text animate-gradient bg-[length:200%_100%]">Standard</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">20 tokens and access to public library which stores your images</p>
                         <div className="mt-auto">
                             <div className="flex justify-center items-baseline my-8">
@@ -94,9 +94,9 @@ export default function PriceCards() {
                 </div>
 
                 {/* Premium Card */}
-                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-background dark:text-white">
+                <div className="flex flex-col p-6 mx-auto w-full text-center text-gray-900 backdrop-blur-xl bg-white/10 rounded-lg xl:p-8 dark:text-white">
                     <div className="flex flex-col h-full">
-                        <h3 className="mb-4 text-2xl font-semibold">Premium</h3>
+                        <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-accent to-blue-900 text-transparent bg-clip-text animate-gradient bg-[length:200%_100%]">Premium</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">60 tokens and access to public library which stores your images</p>
                         <div className="mt-auto">
                             <div className="flex justify-center items-baseline my-8">

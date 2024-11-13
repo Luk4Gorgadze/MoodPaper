@@ -140,3 +140,45 @@ body::-webkit-scrollbar {
     transition: all 0.25s ease-out;
   }
 }
+
+.scroller {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.inner-scroller {
+  display: flex;
+  width: max-content;
+  animation: scroll 10s linear infinite;
+  gap: 1rem;
+}
+
+.image-group {
+  display: flex;
+  gap: 1rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+/* Optional: Pause on hover */
+.inner-scroller:hover {
+  /* animation-play-state: paused; */
+}
+
+.wrap {
+  height: 65vh;
+  margin-top: 17.5vh;
+  display: grid;
+  grid-auto-columns: 23.5vw;
+  grid-auto-flow: column;
+  width: min-content;
+  gap: 1rem;
+}

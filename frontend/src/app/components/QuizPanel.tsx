@@ -4,10 +4,11 @@ import { FC } from 'react'
 import { getCookie } from '../utils/cookies'
 import LoadingSpinner from './LoadingSpinner'
 import { AuthContext } from '../components/Container'
-
+import { QuizQuestion } from '../utils/types'
+// Add the QuizQuestion interface
 
 interface QuizPanelProps {
-    quizQuestions: string[]
+    quizQuestions: QuizQuestion[]  // Updated type
     userAnswers: string[]
     currentAnswer: string
     currentQuestionIndex: number
@@ -63,7 +64,7 @@ const QuizPanel: FC<QuizPanelProps> = ({
                     'Cookie': `sessionid=${getCookie('sessionid')}; csrftoken=${getCookie('csrftoken')}`
                 },
                 body: JSON.stringify({
-                    asked_questions: quizQuestions,
+                    asked_questions: quizQuestions.map(q => q.question),  // Extract just the questions
                     answers: finalAnswers,
                     style: selectedStyle,
                     width: selectedDevice === 'mobile' ? 1024 : 1792,
@@ -80,24 +81,29 @@ const QuizPanel: FC<QuizPanelProps> = ({
     }
 
     return (
-        <div className="mx-auto flex flex-col gap-2 sm:gap-4 w-full">
+        <div className={`mx-auto flex flex-col gap-2 sm:gap-4 w-full ${isResultImageLoading ? 'flex w-full min-h-screen flex-col justify-center text-white' : ''}`}>
             {!isResultImageLoading && (
                 <>
                     <div className="text-white font-bold text-base sm:text-xl mt-6 sm:mt-10 mb-3 sm:mb-5">
                         {currentQuestionIndex + 1}/{quizQuestions.length}
                     </div>
                     <div className="bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-base sm:text-lg font-bold">
-                        {quizQuestions[currentQuestionIndex]}
+                        {quizQuestions[currentQuestionIndex].question}
                     </div>
                     <div className="bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-                        <div>
-                            <textarea
-                                value={currentAnswer}
-                                onChange={(e) => setCurrentAnswer(e.target.value)}
-                                className="w-full p-2 bg-white/10 rounded-md text-white text-sm sm:text-base"
-                                rows={4}
-                                placeholder="Type your answer here..."
-                            />
+                        <div className="flex flex-col gap-2">
+                            {quizQuestions[currentQuestionIndex].answers.map((answer, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentAnswer(answer)}
+                                    className={`w-full p-3 rounded-lg text-left text-sm sm:text-base transition-colors duration-200 
+                                        ${currentAnswer === answer
+                                            ? 'bg-accent text-white'
+                                            : 'bg-white/10 text-white hover:bg-white/20'}`}
+                                >
+                                    {answer}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </>
@@ -106,11 +112,19 @@ const QuizPanel: FC<QuizPanelProps> = ({
                 <>
                     <button
                         onClick={handleGenerate}
-                        className="w-full sm:w-auto sm:px-8 mx-auto bg-green-600 hover:scale-105 sm:hover:scale-110 transition-transform duration-200 text-white font-bold py-2 rounded-lg text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className={`w-full sm:w-auto sm:px-8 mx-auto ${isResultImageLoading
+                            ? 'bg-transparent'
+                            : 'bg-green-600'
+                            } hover:scale-105 sm:hover:scale-110 transition-transform duration-200 text-white font-bold py-2 rounded-lg text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
                         disabled={isResultImageLoading}
                     >
                         {isResultImageLoading ? (
-                            <LoadingSpinner size={5} text="Loading..." />
+                            <div className="flex flex-col items-center justify-center space-y-4">
+                                <LoadingSpinner size={8} />
+                                <span className="bg-gradient-to-r from-accent to-blue-900 text-transparent bg-clip-text animate-gradient bg-[length:200%_100%] font-bold text-xl">
+                                    Generating your image...
+                                </span>
+                            </div>
                         ) : (
                             'Generate'
                         )}
@@ -124,7 +138,7 @@ const QuizPanel: FC<QuizPanelProps> = ({
             ) : (
                 <button
                     onClick={handleNext}
-                    className="w-full sm:w-auto sm:px-8 mx-auto bg-accent hover:scale-105 sm:hover:scale-110 transition-transform duration-200 text-white font-bold py-2 rounded-lg text-sm sm:text-base"
+                    className="w-full sm:w-auto sm:px-8 mx-auto bg-gradient-to-r from-accent to-blue-900 text-white font-bold py-4 rounded-lg text-xl hover:opacity-80 transition-opacity relative overflow-hidden animate-gradient bg-[length:200%_100%]"
                 >
                     Next Question
                 </button>

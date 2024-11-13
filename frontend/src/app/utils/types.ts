@@ -18,6 +18,13 @@ interface GalleryImageProps {
     date?: string;
     aspectRatio?: '1:1' | '16:9';
     dimensions?: string;  // Add dimensions prop
+    description?: string;
 }
 
-export type { Subscription, User, GalleryImageProps };
+
+interface QuizQuestion {
+    question: string;
+    answers: string[];
+}
+
+export type { Subscription, User, GalleryImageProps, QuizQuestion };

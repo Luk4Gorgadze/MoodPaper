@@ -117,7 +117,7 @@ export default function ImageResultPanel({
                             alt="Left image"
                             width={newImageData.width}
                             height={newImageData.height}
-                            className={`object-cover rounded-xl hover:scale-105 transition-transform duration-200`}
+                            className={`object-cover rounded-xl transition-transform duration-200`}
                             loading="lazy"
                         />
                     )}
@@ -148,7 +148,7 @@ export default function ImageResultPanel({
                                     console.error('Download failed:', error);
                                 }
                             }}
-                            className="bg-black/50 hover:bg-black/70 p-2 rounded-lg backdrop-blur-sm transition-all duration-200 hover:scale-110"
+                            className="bg-black/50 hover:bg-black/70 p-2 rounded-lg backdrop-blur-sm transition-all duration-200"
                             title="Download image"
                         >
                             <svg
@@ -172,17 +172,22 @@ export default function ImageResultPanel({
             <div className='w-full md:w-1/2 space-y-6'>
                 <div className="space-y-10 flex flex-col">
                     <div className="flex items-center">
-                        <p className="w-full rounded-lg p-2 font-bold text-lg border border-gray-700">
-                            Title: {newImageData.title}
-                        </p>
-                    </div>
-                    <div className="flex items-center">
-                        <p className="w-full rounded-lg p-2 font-bold text-lg border border-gray-700">
+                        <p className="w-full rounded-lg p-4 font-bold text-lg bg-white/10 backdrop-blur-sm">
                             Author: {newImageData.username}
                         </p>
                     </div>
                     <div className="flex items-center">
-                        <p className="w-full rounded-lg p-2 font-bold text-lg border border-gray-700">
+                        <p className="w-full rounded-lg p-4 font-bold text-lg bg-white/10 backdrop-blur-sm">
+                            Title: {newImageData.title}
+                        </p>
+                    </div>
+                    <div className="flex items-center">
+                        <p className="w-full rounded-lg p-4 font-bold text-lg bg-white/10 backdrop-blur-sm">
+                            Description: {newImageData.description}
+                        </p>
+                    </div>
+                    <div className="flex items-center">
+                        <p className="w-full rounded-lg p-4 font-bold text-lg bg-white/10 backdrop-blur-sm">
                             Resolution: {newImageData.width} x {newImageData.height}
                         </p>
                     </div>
@@ -202,7 +207,7 @@ export default function ImageResultPanel({
                     </div>
                     <button
                         onClick={handleFinish}
-                        className='w-full bg-accent font-bold text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl mt-6 sm:mt-10 text-base sm:text-lg transition-transform duration-200 hover:scale-105'
+                        className="w-full sm:w-auto sm:px-8 mx-auto bg-gradient-to-r from-accent to-blue-900 text-white font-bold py-4 rounded-lg text-xl hover:opacity-80 transition-opacity relative overflow-hidden animate-gradient bg-[length:200%_100%]"
                     >
                         Done
                     </button>

@@ -162,16 +162,18 @@ const Header = ({ isAuthenticated, setIsAuthenticated, user, setUser }: HeaderPr
                     {isMenuOpen ? 'Close' : 'Menu'}
                 </button>
 
-                <nav className="hidden lg:block flex-grow max-w-2xl mx-4">
+                <nav className="hidden lg:block flex-grow max-w-2xl mx-4 h-5">
                     <ul className="flex space-x-6 justify-center">
                         {navItems.map((item) => (
                             <li key={item.href}>
-                                <TransitionLink
-                                    href={item.href}
-                                    item={item}
-                                >
-                                    {item.label}
-                                </TransitionLink>
+                                <div className='transition-duration-100 hover:border-b-[2px] hover:pb-2 hover:border-accent'>
+                                    <TransitionLink
+                                        href={item.href}
+                                        item={item}
+                                    >
+                                        {item.label}
+                                    </TransitionLink>
+                                </div>
                             </li>
                         ))}
                     </ul>

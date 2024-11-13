@@ -1,3 +1,4 @@
+import json
 from rest_framework import serializers
 from .models import MoodWallpaper
 class MoodWallpaperSerializerView(serializers.Serializer):
@@ -20,8 +21,10 @@ class MoodWallpaperSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='author.username', read_only=True)
     width = serializers.IntegerField(read_only=True)
     height = serializers.IntegerField(read_only=True)
+    description = serializers.CharField(read_only=True)
     
     class Meta:
         model = MoodWallpaper
-        fields = ['id', 'created_at', 'author', 'username', 'title', 'width', 'height', 'is_public', 'image_url']
+        fields = ['id', 'created_at', 'author', 'username', 'title', 'description',
+                 'questions', 'answers', 'width', 'height', 'is_public', 'image_url']
         read_only_fields = ['created_at']

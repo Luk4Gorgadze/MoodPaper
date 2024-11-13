@@ -2,13 +2,61 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import ImageCollage from './components/ImmageCollage'
+import ImageCollage from './components/ImageCollage'
+import Features from './components/MainPage/Features'
+import Reviews from './components/MainPage/Reviews'
+import { motion } from 'framer-motion'
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.1,
+      delay: 0.05 * i,
+    },
+  }),
+}
 
 export default function Home() {
   return (
     <main className="text-white min-h-screen">
       <div className="text-4xl font-bold my-8 mt-10">
-        CONVERT YOUR <span className="text-accent">MOOD</span> INTO STUNNING WALLPAPERS
+        {"CONVERT YOUR ".split("").map((char, index) => (
+          <motion.span
+            key={index}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            custom={index + 1}
+          >
+            {char}
+          </motion.span>
+        ))}
+        {"MOOD".split("").map((char, index) => (
+          <motion.span
+            key={index + 12}
+            className="bg-gradient-to-r from-accent to-blue-900 text-transparent bg-clip-text animate-gradient bg-[length:200%_100%]"
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            custom={index + 13}
+          >
+            {char}
+          </motion.span>
+        ))}
+        {" INTO STUNNING WALLPAPERS".split("").map((char, index) => (
+          <motion.span
+            key={index + 16}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            custom={index + 17}
+          >
+            {char}
+          </motion.span>
+        ))}
       </div>
       <div className="text-md font-semibold mt-5">
         Introducing Moodpaper, the Generative AI image tool which translates your mood and feelings into wallpapers.
@@ -18,33 +66,8 @@ export default function Home() {
       </div>
 
       <ImageCollage />
-
-      {/* Feature Blocks */}
-      <div className="flex flex-col md:flex-row gap-8 mb-16">
-        {/* Feature 1 */}
-        <div className="flex-1 bg-gray-800/40 p-6 rounded-xl">
-          <h3 className="text-xl font-bold mb-3">AI-Powered Creation</h3>
-          <p className="text-gray-300">
-            Transform your emotions and ideas into unique wallpapers using advanced AI technology that understands your mood.
-          </p>
-        </div>
-
-        {/* Feature 2 */}
-        <div className="flex-1 bg-gray-800/40 p-6 rounded-xl">
-          <h3 className="text-xl font-bold mb-3">Endless Possibilities</h3>
-          <p className="text-gray-300">
-            Generate unlimited unique designs that perfectly match your style and current emotional state.
-          </p>
-        </div>
-
-        {/* Feature 3 */}
-        <div className="flex-1 bg-gray-800/40 p-6 rounded-xl">
-          <h3 className="text-xl font-bold mb-3">High Resolution</h3>
-          <p className="text-gray-300">
-            Download stunning wallpapers in high resolution, perfect for any device or screen size.
-          </p>
-        </div>
-      </div>
-    </main>
+      <Features />
+      <Reviews />
+    </main >
   )
 }

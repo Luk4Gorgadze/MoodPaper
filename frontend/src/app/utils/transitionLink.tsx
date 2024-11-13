@@ -37,7 +37,7 @@ export const TransitionLink = ({ href, children, item, ...props }: TransitionLin
             className={`${pathname === item.href
                 ? 'text-accent'
                 : 'text-white hover:text-white'
-                } font-semibold transition-colors duration-200`}>
+                } font-semibold transition-colors`}>
             {children}
         </Link >
     )

@@ -2,16 +2,18 @@
 import { GalleryImageProps } from '@/app/utils/types'
 
 
-const ImageOverlay = ({ title, author, imageUrl, dimensions }: {
+const ImageOverlay = ({ title, author, imageUrl, dimensions, description }: {
     title: string;
     author: string;
     imageUrl: string;
     dimensions?: string;
+    description?: string;
 }) => (
     <>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
             <h3 className="text-lg font-semibold text-white">{title}</h3>
+            {description && <p className="text-sm text-white/90 mt-1 mb-2">{description}</p>}
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <AuthorInfo author={author} />
@@ -68,10 +70,11 @@ export default function GalleryImage({
     imageUrl,
     title,
     author,
-    dimensions
+    dimensions,
+    description
 }: GalleryImageProps) {
     return (
-        <div className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+        <div className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
             <div className={`relative 'aspect-video'`}>
                 <img
                     src={imageUrl}
@@ -83,6 +86,7 @@ export default function GalleryImage({
                     author={author}
                     imageUrl={imageUrl}
                     dimensions={dimensions}
+                    description={description}
                 />
             </div>
         </div>
