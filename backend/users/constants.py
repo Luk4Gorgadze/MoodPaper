@@ -5,7 +5,7 @@ class SubscriptionEnum(Enum):
     STANDARD = 'Standard'
     PREMIUM = 'Premium'
 
-FREE_TOKEN_COUNT = 1
+FREE_TOKEN_COUNT = 0
 STANDARD_TOKEN_COUNT = 20
 PREMIUM_TOKEN_COUNT = 60
 
