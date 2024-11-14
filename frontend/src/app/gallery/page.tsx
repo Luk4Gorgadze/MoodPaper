@@ -1,8 +1,9 @@
 'use client'
 
 import GalleryImage from '../components/GalleryImage'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { getCookie } from '../utils/cookies';
+import { AuthContext } from '../components/Container';
 
 
 // Add type definition
@@ -24,6 +25,7 @@ export default function Gallery() {
     const [isLoading, setIsLoading] = useState(true);
     const [selectedDevice, setSelectedDevice] = useState<'desktop' | 'mobile'>('desktop');
     const [viewType, setViewType] = useState<'public' | 'personal'>('public');
+    const { isAuthenticated } = useContext(AuthContext);
 
     // Add dimensions mapping
     const deviceDimensions = {
@@ -157,18 +159,20 @@ export default function Gallery() {
                             Mobile
                         </button>
                     </div>
-                    <button
-                        onClick={() => {
-                            setViewType(prev => prev === 'public' ? 'personal' : 'public');
-                            setCurrentPage(1);
-                        }}
-                        className="px-4 sm:px-6 py-2 text-sm font-medium text-white rounded-xl
-                            bg-white/10 backdrop-blur-sm border border-white/10
-                            hover:bg-white/20 transition-all duration-200
-                            hover:shadow-lg hover:shadow-purple-500/20"
-                    >
-                        {viewType === 'public' ? 'View My Library' : 'View Public Gallery'}
-                    </button>
+                    {isAuthenticated && (
+                        <button
+                            onClick={() => {
+                                setViewType(prev => prev === 'public' ? 'personal' : 'public');
+                                setCurrentPage(1);
+                            }}
+                            className="px-4 sm:px-6 py-2 text-sm font-medium text-white rounded-xl
+                                bg-white/10 backdrop-blur-sm border border-white/10
+                                hover:bg-white/20 transition-all duration-200
+                                hover:shadow-lg hover:shadow-purple-500/20"
+                        >
+                            {viewType === 'public' ? 'View My Library' : 'View Public Gallery'}
+                        </button>
+                    )}
                 </div>
 
                 <p className="text-lg mb-10"><span className="text-accent font-bold">Feel free to download,</span> since users are able to share their wallpapers with the public if they want</p>
