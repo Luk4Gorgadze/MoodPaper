@@ -19,6 +19,7 @@ from rest_framework import status
 from users.models import User
 from moodgeneration.models import MoodWallpaper
 from users.models import Subscription
+from .constants import default_questions, questions
 # Set your OpenAI API key
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
@@ -68,87 +69,25 @@ class MoodWallpaperQuizView(View):
         user = User.objects.filter(kinde_user_id=user_id).first()
         subscription = Subscription.objects.filter(user=user).first()
 
-        if subscription and subscription.tokens_count <= 0:
-            raise ValueError("You have no tokens left")
+        if not subscription:
+            raise ValueError("You have no subscription")
             
         return user, subscription
 
     def _generate_questions(self):
-        default_questions = [
-            {
-                "question": "1.Which environment makes you feel most at peace right now?",
-                "answers": [
-                    "A cozy room with soft lighting and warm colors",
-                    "A serene beach at sunset",
-                    "A vibrant city street full of life",
-                    "A quiet forest with dappled sunlight"
-                ]
-            },
-            {
-                "question": "2.If your current emotional state was expressed through music, what would it be?",
-                "answers": [
-                    "An upbeat pop song full of energy",
-                    "A melancholic classical piece",
-                    "A powerful rock anthem",
-                    "A gentle acoustic melody"
-                ]
-            },
-            {
-                "question": "3.Which creative activity resonates most with your current mood?",
-                "answers": [
-                    "Painting with bold, expressive strokes",
-                    "Writing in a personal journal",
-                    "Dancing to release energy",
-                    "Photography to capture moments"
-                ]
-            },
-            {
-                "question": "4.What kind of weather best reflects your inner state today?",
-                "answers": [
-                    "Sunny and clear skies",
-                    "Gentle rain with occasional thunder",
-                    "Misty and mysterious",
-                    "Warm breeze with scattered clouds"
-                ]
-            },
-            {
-                "question": "5.Which symbolic element feels most connected to your current emotional energy?",
-                "answers": [
-                    "A flowing river (adaptability/movement)",
-                    "A mountain (stability/strength)",
-                    "A flame (passion/transformation)",
-                    "A tree (growth/connection)"
-                ]
-            }
-        ]
-
         try:
-            prompt = (
-                "Generate 5 unique multiple-choice questions about mood and personality. Each question should:\n"
-                "1. Be creative and indirect (avoid direct questions about feelings)\n"
-                "2. Use metaphors, symbolism, or scenarios\n"
-                "3. Include 4 distinct answer choices\n"
-                "4. Focus on different aspects: environment preferences, creative expression, "
-                "energy levels, emotional patterns, and personal values\n"
-                "5. Use varied themes like nature, art, music, movement, or abstract concepts\n\n"
-                "Format the response as a JSON array of objects, each with 'question' and 'answers' (array of 4 strings) keys.\n"
-                "Each question should be prefixed with its number (1-5).\n"
-                "Make sure questions are different each time by incorporating random elements like "
-                "different scenarios, seasons, art forms, or cultural references."
-            )
-
-            response = get_chat_completion(prompt)
-            questions = json.loads(response)
+            # Select 5 random questions from the pre-written questions
+            selected_questions = random.sample(questions, 5)
             
-            # Validate response format
-            if (len(questions) == 5 and 
-                all('question' in q and 'answers' in q and len(q['answers']) == 4 
-                    for q in questions)):
-                return questions
-            return default_questions
+            # Remove numbers from the beginning of each question
+            for question in selected_questions:
+                # Remove number and dot prefix from question text
+                question['question'] = ' '.join(question['question'].split('.')[1:]).strip()
+            
+            return selected_questions
             
         except Exception as e:
-            print(f"Error generating questions: {str(e)}")
+            print(f"Error selecting questions: {str(e)}")
             return default_questions
 
 @method_decorator(kinde_authenticated, name='post')

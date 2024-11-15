@@ -21,6 +21,7 @@ interface QuizPanelProps {
     setNewImageData: (data: any) => void
     isResultImageLoading: boolean
     setIsResultImageLoading: (loading: boolean) => void
+    availableTokens: number
 }
 
 const QuizPanel: FC<QuizPanelProps> = ({
@@ -36,7 +37,8 @@ const QuizPanel: FC<QuizPanelProps> = ({
     setGeneratedImageTitle,
     setNewImageData,
     isResultImageLoading,
-    setIsResultImageLoading
+    setIsResultImageLoading,
+    availableTokens
 }) => {
     const handleNext = () => {
         const numberedAnswer = `${currentQuestionIndex + 1}. ${currentAnswer}`
@@ -91,19 +93,54 @@ const QuizPanel: FC<QuizPanelProps> = ({
                         {quizQuestions[currentQuestionIndex].question}
                     </div>
                     <div className="bg-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-                        <div className="flex flex-col gap-2">
-                            {quizQuestions[currentQuestionIndex].answers.map((answer, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentAnswer(answer)}
-                                    className={`w-full p-3 rounded-lg text-left text-sm sm:text-base transition-colors duration-200 
-                                        ${currentAnswer === answer
-                                            ? 'bg-accent text-white'
-                                            : 'bg-white/10 text-white hover:bg-white/20'}`}
-                                >
-                                    {answer}
-                                </button>
-                            ))}
+                        <div className="flex flex-col gap-4">
+                            {/* Predefined answers */}
+                            <div className="flex flex-col gap-2">
+                                <p className="text-white/70 text-sm">Choose from options:</p>
+                                {quizQuestions[currentQuestionIndex].answers.map((answer, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentAnswer(answer)}
+                                        className={`w-full p-3 rounded-lg text-left text-sm sm:text-base transition-colors duration-200 
+                                            ${currentAnswer === answer
+                                                ? 'bg-accent text-white'
+                                                : 'bg-white/10 text-white hover:bg-white/20'}`}
+                                    >
+                                        {answer}
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Divider */}
+                            <div className="flex items-center gap-4">
+                                <div className="h-px bg-white/20 flex-grow"></div>
+                                <span className="text-white/50 text-sm">or</span>
+                                <div className="h-px bg-white/20 flex-grow"></div>
+                            </div>
+
+                            {/* Custom answer */}
+                            <div className="flex flex-col gap-2">
+                                <p className="text-white/70 text-sm">Type your own answer:</p>
+                                <div className="relative">
+                                    <textarea
+                                        value={currentAnswer}
+                                        onChange={(e) => {
+                                            // Limit the input to 500 characters
+                                            if (e.target.value.length <= 500) {
+                                                setCurrentAnswer(e.target.value)
+                                            }
+                                        }}
+                                        placeholder="Type your answer here..."
+                                        maxLength={500}
+                                        className="w-full p-3 rounded-lg text-sm sm:text-base bg-white/10 text-white 
+                                            placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-accent
+                                            min-h-[100px] resize-none"
+                                    />
+                                    <div className="absolute bottom-2 right-2 text-xs text-white/50">
+                                        {currentAnswer.length}/500
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>
@@ -114,9 +151,9 @@ const QuizPanel: FC<QuizPanelProps> = ({
                         onClick={handleGenerate}
                         className={`w-full sm:w-auto sm:px-8 mx-auto ${isResultImageLoading
                             ? 'bg-transparent'
-                            : 'bg-green-600'
-                            } hover:scale-105 sm:hover:scale-110 transition-transform duration-200 text-white font-bold py-2 rounded-lg text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
-                        disabled={isResultImageLoading}
+                            : 'bg-gradient-to-r from-accent to-blue-900'
+                            } text-white font-bold py-4 rounded-lg text-xl hover:opacity-80 transition-opacity relative overflow-hidden animate-gradient bg-[length:200%_100%] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:opacity-50`}
+                        disabled={isResultImageLoading || availableTokens === 0}
                     >
                         {isResultImageLoading ? (
                             <div className="flex flex-col items-center justify-center space-y-4">
@@ -125,6 +162,8 @@ const QuizPanel: FC<QuizPanelProps> = ({
                                     Generating your image...
                                 </span>
                             </div>
+                        ) : availableTokens === 0 ? (
+                            'No tokens available'
                         ) : (
                             'Generate'
                         )}
@@ -132,6 +171,11 @@ const QuizPanel: FC<QuizPanelProps> = ({
                     {isResultImageLoading && (
                         <p className="text-yellow-400 text-sm text-center mt-2">
                             Please stay on this page while we generate your wallpaper...
+                        </p>
+                    )}
+                    {availableTokens === 0 && (
+                        <p className="text-red-400 text-sm text-center mt-2">
+                            You don't have any tokens left. Please purchase more tokens to generate images.
                         </p>
                     )}
                 </>
