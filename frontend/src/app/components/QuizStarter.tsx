@@ -28,6 +28,7 @@ export default function QuizStarter({ selectedDevice, setSelectedDevice, isQuizO
                 }
             })
             const data = await response.json()
+            console.log(data)
             setQuizQuestions(data.questions)
             setIsQuizOpen(true)
             setQuizDone(false)

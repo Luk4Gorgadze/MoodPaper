@@ -76,14 +76,31 @@ class MoodWallpaperQuizView(View):
 
     def _generate_questions(self):
         try:
-            # Select 5 random questions from the pre-written questions
-            selected_questions = random.sample(questions, 5)
+            total_questions = len(questions)
+            used_indices = set()
+            selected_questions = []
             
-            # Remove numbers from the beginning of each question
-            for question in selected_questions:
+            while len(selected_questions) < 5 and len(used_indices) < total_questions:
+                # Get random index that hasn't been used
+                idx = random.randint(0, total_questions - 1)
+                if idx in used_indices:
+                    continue
+                    
+                used_indices.add(idx)
+                question = questions[idx].copy()  # Shallow copy to avoid modifying original
+                
                 # Remove number and dot prefix from question text
-                question['question'] = ' '.join(question['question'].split('.')[1:]).strip()
+                cleaned_question = ' '.join(question['question'].split('.')[1:]).strip()
+                
+                # If question is not empty, add it to selected questions
+                if cleaned_question:
+                    question['question'] = cleaned_question
+                    selected_questions.append(question)
             
+            # If we couldn't get 5 valid questions, fall back to defaults
+            if len(selected_questions) < 5:
+                return default_questions
+                
             return selected_questions
             
         except Exception as e:
